@@ -50,10 +50,9 @@ public class JwtUtils {
         return JWT.create()
                 .withHeader(map)
                 .withClaim("userAccount", user.getUserAccount())
-                .withClaim("userName", user.getUserName())
                 .withIssuer("672025")
                 .withIssuedAt(Date.from(LocalDateTime.now().toInstant(ZoneOffset.of("+8"))))
-                .withExpiresAt(Date.from(LocalDateTime.now().plusMinutes(30).toInstant(ZoneOffset.of("+8"))))
+                .withExpiresAt(Date.from(LocalDateTime.now().plusMinutes(60).toInstant(ZoneOffset.of("+8"))))
                 .sign(algorithm);
     }
 
@@ -81,7 +80,7 @@ public class JwtUtils {
      */
     public static String checkTokenAccount(String token){
 //        long类型值默认初始化值
-        log.info("校验token值并放回账号");
+        log.info("/java-jwt 校验token值并放回账号");
         String userAccount = null;
         try{
             Algorithm algorithm = Algorithm.HMAC256(APP_SECRET);
@@ -117,21 +116,6 @@ public class JwtUtils {
         return JwtToken;
     }
 
-    /**
-     *j jwt判断token值是否有效
-     */
-    /*public static boolean checkToken(String jwtToken){
-        if(jwtToken.isEmpty()) {
-            return false;
-        }
-        try {
-            Jwts.parser().setSigningKey(APP_SECRET).parseClaimsJws(jwtToken);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
-        return true;
-    }*/
 
     /**
      * 判断token是否存在与有效 j jwt

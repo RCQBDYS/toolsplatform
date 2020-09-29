@@ -16,15 +16,16 @@ import java.util.List;
 public interface IUserService extends IService<User> {
     /**
      *匹配用户信息
-     * @param user
-     * @return user
+     * @param user user
+     * @return User
      */
     User matchAccount(User user);
 
     /**
-     *检验数据库中用户的存在性
-     * @Param null
-     * @return list
+     *检验数据库中用户的存在性，同时根据账号查询用户全部信息
+     * @param userAccount userAccount
+     * @return User
      */
     User checkAccount(Integer userAccount);
+
 }

@@ -12,13 +12,14 @@
         <result column="userState" property="userState" />
     </resultMap>
 
-    <!--根据用户账户查询信息-->
+    <!--根据用户账户和密码查询信息-->
     <select id="matchAccount" resultMap="BaseResultMap">
-        select * from user where userAccount = #{userAccount} and passWord = #{passWord};
+        select * from user where userAccount = #{userAccount} and passWord = #{passWord} and userState = 0;
     </select>
 
-    <!--查询所有的用户账号-->
+    <!--查询是否存在该账号，同时根据用户账号查询用户所有信息-->
     <select id="checkAccount" resultMap="BaseResultMap">
-        select * from user where userAccount = #{userAccount};
+        select * from user where userAccount = #{userAccount} and userState = 0;
     </select>
+
 </mapper>
